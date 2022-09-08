@@ -3,15 +3,51 @@
 # Part 1
 
 def sum(arr)
-  # YOUR CODE HERE
+	result = 0
+	arr.each do |item|
+		result+=item
+	end
+	return result
 end
 
 def max_2_sum(arr)
-  # YOUR CODE HERE
+	if arr.length == 0
+		return 0
+	elsif arr.length == 1
+		return arr[0]
+	else
+		first_max = 0
+		second_max = 0
+	  if arr[0] > arr[1]
+	    first_max = arr[0]
+	    second_max = arr[1]
+	  else
+	    first_max = arr[1]
+	    second_max = arr[0]
+		  (2..arr.length-1).each do |i|
+		    if arr[i] > first_max
+		      second_max = first_max
+		      first_max = arr[i]
+		    elsif arr[i] > second_max and arr[i] <= first_max
+		      second_max = arr[i]
+		    end
+		  end
+		end
+	  return first_max + second_max
+	end
 end
 
+
 def sum_to_n?(arr, number)
-  # YOUR CODE HERE
+	dict = {}
+  arr.each do |item|
+  	if dict.include?(number-item)
+  		return true
+  	else
+  		dict[item] = 1
+  	end
+  end
+  return false
 end
 
 # Part 2
