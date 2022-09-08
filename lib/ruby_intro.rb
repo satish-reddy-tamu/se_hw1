@@ -53,15 +53,23 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+	return "Hello, " + name
 end
 
 def starts_with_consonant?(string)
-  # YOUR CODE HERE
+	if string.strip() == ''
+		return false
+	else
+  	return /[a-z&&[^aeiou]]/.match(string[0].downcase)
+  end
 end
 
 def binary_multiple_of_4?(string)
-  # YOUR CODE HERE
+  if string == "0"
+  	return true
+  else
+  	return string.to_i(2) != 0 && string.to_i(2)%4==0
+  end
 end
 
 # Part 3
