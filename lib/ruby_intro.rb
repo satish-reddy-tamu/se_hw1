@@ -76,5 +76,48 @@ end
 
 # Object representing a book
 class BookInStock
-  # YOUR CODE HERE
+  def initialize(isbn, price)
+  	if validate_isbn(isbn) and validate_price(price)
+  		@isbn = isbn
+  		@price = price
+  	else
+  		raise ArgumentError.new()
+  	end
+  end
+
+  def validate_isbn(isbn)
+  	return isbn.strip() != ''
+  end
+
+  def validate_price(price)
+  	return price > 0
+  end
+
+  def isbn
+  	return @isbn
+  end
+
+  def isbn=(isbn)
+  	if validate_isbn(isbn)
+  		@isbn = isbn
+  	else
+  		raise ArgumentError.new()
+  	end
+  end
+
+  def price
+  	return @price
+  end
+
+  def price=(price)
+  	if validate_price(price)
+  		@price = price
+  	else
+  		raise ArgumentError.new()
+  	end
+  end
+
+  def price_as_string()
+  	return "$%0.2f"%[price]
+  end
 end
