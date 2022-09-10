@@ -18,36 +18,36 @@ def max_2_sum(arr)
 	else
 		first_max = 0
 		second_max = 0
-	  if arr[0] > arr[1]
-	    first_max = arr[0]
-	    second_max = arr[1]
-	  else
-	    first_max = arr[1]
-	    second_max = arr[0]
-		  (2..arr.length-1).each do |i|
-		    if arr[i] > first_max
-		      second_max = first_max
-		      first_max = arr[i]
-		    elsif arr[i] > second_max and arr[i] <= first_max
-		      second_max = arr[i]
-		    end
-		  end
+		if arr[0] > arr[1]
+			first_max = arr[0]
+			second_max = arr[1]
+		else
+			first_max = arr[1]
+			second_max = arr[0]
+			(2..arr.length-1).each do |i|
+				if arr[i] > first_max
+					second_max = first_max
+					first_max = arr[i]
+				elsif arr[i] > second_max and arr[i] <= first_max
+					second_max = arr[i]
+				end
+			end
 		end
-	  return first_max + second_max
+		return first_max + second_max
 	end
 end
 
 
 def sum_to_n?(arr, number)
 	dict = {}
-  arr.each do |item|
-  	if dict.include?(number-item)
-  		return true
-  	else
-  		dict[item] = 1
-  	end
-  end
-  return false
+	arr.each do |item|
+		if dict.include?(number-item)
+			return true
+		else
+			dict[item] = 1
+		end
+	end
+	return false
 end
 
 # Part 2
@@ -60,64 +60,64 @@ def starts_with_consonant?(string)
 	if string.strip() == ''
 		return false
 	else
-  	return /[a-z&&[^aeiou]]/.match(string[0].downcase)
-  end
+		return /[a-z&&[^aeiou]]/.match(string[0].downcase)
+	end
 end
 
 def binary_multiple_of_4?(string)
-  if string == "0"
-  	return true
-  else
-  	return string.to_i(2) != 0 && string.to_i(2)%4==0
-  end
+	if string == "0"
+		return true
+	else
+		return string.to_i(2) != 0 && string.to_i(2)%4==0
+	end
 end
 
 # Part 3
 
 # Object representing a book
 class BookInStock
-  def initialize(isbn, price)
-  	if validate_isbn(isbn) and validate_price(price)
-  		@isbn = isbn
-  		@price = price
-  	else
-  		raise ArgumentError.new()
-  	end
-  end
+	def initialize(isbn, price)
+		if validate_isbn(isbn) and validate_price(price)
+			@isbn = isbn
+			@price = price
+		else
+			raise ArgumentError.new()
+		end
+	end
 
-  def validate_isbn(isbn)
-  	return isbn.strip() != ''
-  end
+	def validate_isbn(isbn)
+		return isbn.strip() != ''
+	end
 
-  def validate_price(price)
-  	return price > 0
-  end
+	def validate_price(price)
+		return price > 0
+	end
 
-  def isbn
-  	return @isbn
-  end
+	def isbn
+		return @isbn
+	end
 
-  def isbn=(isbn)
-  	if validate_isbn(isbn)
-  		@isbn = isbn
-  	else
-  		raise ArgumentError.new()
-  	end
-  end
+	def isbn=(isbn)
+		if validate_isbn(isbn)
+			@isbn = isbn
+		else
+			raise ArgumentError.new()
+		end
+	end
 
-  def price
-  	return @price
-  end
+	def price
+		return @price
+	end
 
-  def price=(price)
-  	if validate_price(price)
-  		@price = price
-  	else
-  		raise ArgumentError.new()
-  	end
-  end
+	def price=(price)
+		if validate_price(price)
+			@price = price
+		else
+			raise ArgumentError.new()
+		end
+	end
 
-  def price_as_string()
-  	return "$%0.2f"%[price]
-  end
+	def price_as_string()
+		return "$%0.2f"%[price]
+	end
 end
